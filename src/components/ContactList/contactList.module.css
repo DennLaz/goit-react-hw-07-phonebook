@@ -1,0 +1,10 @@
+.list{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.item:first-child{
+    padding-top: 30px;
+}
+

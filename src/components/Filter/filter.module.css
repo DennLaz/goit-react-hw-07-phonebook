@@ -1,0 +1,21 @@
+.input {
+    margin-top: 10px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid red;
+    padding: 5px;
+}
+
+.wrap {
+    display: flex;
+}
+
+.label {
+    font-weight: 600;
+    padding-top: 10px;
+    display: flex;
+
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
