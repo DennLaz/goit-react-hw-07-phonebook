@@ -1,4 +1,4 @@
-// import { Component } from 'react';
+
 import { useState, memo } from 'react';
 
 import PropTypes from 'prop-types';
@@ -20,7 +20,7 @@ function ContactsForm({ onSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit({ ...state });
+    onSubmit(state);
     setState({
       name: '',
       number: '',
