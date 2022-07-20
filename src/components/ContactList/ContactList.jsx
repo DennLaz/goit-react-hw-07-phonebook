@@ -4,13 +4,13 @@ import ContactListItem from './ContactListItem';
 import styles from './contactList.module.css';
 
 const ContactList = ({ contact, removeContacts }) => {
-  const contactEl = contact.map(({ id, name, number }) => (
+  const contactEl = contact.map(({ id, name, phone }) => (
     <ContactListItem
       key={id}
       removeContacts={removeContacts}
       id={id}
       name={name}
-      number={number}
+      number={phone}
     />
   ));
 
@@ -25,10 +25,10 @@ ContactList.defaultProps = {
 ContactList.propTypes = {
   removeContacts: PropTypes.func,
   contact: PropTypes.arrayOf(
-    PropTypes.exact({
+    PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
     })
   ),
 };

@@ -5,16 +5,16 @@ const instance = axios.create({
 });
 
 export const getPhoneBook = async () => {
-  const { data } = instance.get('/');
+  const { data } = await instance.get('/');
   return data;
 };
 
 export const addPhoneBook = async data => {
-  const { data: result } = instance.post('/', data);
+  const { data: result } = await instance.post('/', data);
   return result;
 };
 
 export const removePhoneBook = async id => {
-  const { data } = instance.delete(`/${id}`);
+  const { data } = await instance.delete(`/${id}`);
   return data;
 };
