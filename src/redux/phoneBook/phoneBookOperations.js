@@ -27,7 +27,7 @@ export const addPhoneBook = createAsyncThunk(
   {
     condition: (data, { getState }) => {
       const { contacts } = getState();
-      const { name, number } = data;
+      const { name } = data;
       const isFind = contacts.items.find(el => el.name === name);
       if (isFind) {
         alert(`Contact with the name ${name} is already in your list`);
