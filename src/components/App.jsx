@@ -1,5 +1,5 @@
 
-import { useCallback, useEffect} from 'react';
+import { useCallback, useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -7,7 +7,8 @@ import {
   addPhoneBook,
   removePhoneBook,
 } from '../redux/phoneBook/phoneBookOperations'
-import {getPhoneBook} from '../redux/phoneBook/phoneBookSelectors'
+import { getPhoneBook } from '../redux/phoneBook/phoneBookSelectors'
+
 
 import Section from './Section';
 import ContactsForm from './ContactsForm';
@@ -17,7 +18,8 @@ import Filter from './Filter';
 import styles from './app.module.css';
 
 export function App() {
-  const {items} = useSelector(getPhoneBook);
+  const [filter, setFilter] = useState('');
+  const { items, loading } = useSelector(getPhoneBook);
 
 
   const dispatch = useDispatch();
@@ -35,6 +37,20 @@ export function App() {
     dispatch(removePhoneBook(id))
   }, [dispatch])
 
+  const onFilter = (e)=>{
+      const { value } = e.target;
+      setFilter(value);
+    }
+    const getFilteredItems = () => {
+    if (!filter) {
+      return items;
+    }
+    return items.filter(el => el.name.toLowerCase().includes(filter.toLowerCase()));
+    }
+
+    const filteredItems = getFilteredItems();
+
+
   
   return (
     <div className={styles.container}>
@@ -42,8 +58,9 @@ export function App() {
         <ContactsForm onSubmit={onAddContacts} />
       </Section>
       <Section title="Contacts">
-        <Filter />
-        <ContactList contact={items} removeContacts={onRemoveContact} />
+        <Filter onChange={onFilter} />
+        {loading && <p>...Loading</p>}
+        <ContactList contact={filteredItems} removeContacts={onRemoveContact} />
       </Section>
     </div>
   );

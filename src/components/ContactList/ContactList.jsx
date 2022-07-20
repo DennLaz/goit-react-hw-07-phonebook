@@ -10,7 +10,7 @@ const ContactList = ({ contact, removeContacts }) => {
       removeContacts={removeContacts}
       id={id}
       name={name}
-      number={phone}
+      phone={phone}
     />
   ));
 
